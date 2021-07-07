@@ -67,7 +67,7 @@ border: 1px solid  gray;</string>
     <string>Отмена</string>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox">
+  <widget class="QCheckBox" name="rememberBox">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -124,7 +124,7 @@ border: 1px solid  gray;</string>
     </size>
    </property>
   </widget>
-  <widget class="QCheckBox" name="checkBox_2">
+  <widget class="QCheckBox" name="passwordBox">
    <property name="geometry">
     <rect>
      <x>140</x>

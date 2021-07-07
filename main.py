@@ -33,6 +33,15 @@ class Login(QDialog):
         self.userName.setPlaceholderText(" Имя пользователя")
         self.password.setPlaceholderText(" Пароль")
 
+        self.passwordBox.stateChanged.connect(self.show_password)
+
+    def show_password(self):
+        if self.password.echoMode() == 2:
+            self.password.setEchoMode(QtWidgets.QLineEdit.Normal)
+        else:
+            self.password.setEchoMode(QtWidgets.QLineEdit.Password)
+
+
     def login_function(self):
         user_name = self.userName.text()
         password = self.password.text()
@@ -154,6 +163,7 @@ class TableUsers(QDialog):
 
     def initTable(self):
         contacts = database_requests.getAllUsersByUserId(self.user_id)
+        print(contacts)
         row = 0
         self.tableWidget.setRowCount(len(contacts))
         for contact in contacts:
