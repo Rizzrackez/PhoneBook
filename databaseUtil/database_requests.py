@@ -3,12 +3,11 @@ import sys
 
 try:
     conn = mariadb.connect(
-        user="root",
-        password="maksim2212",
+        user="root",  # имя пользователя бд
+        password="maksim2212",  # пароль пользователя бд
         host="127.0.0.1",
         port=3306,
         database="phone_book_db"
-
     )
 except mariadb.Error as e:
     print(f"Error connecting to MariaDB Platform: {e}")
