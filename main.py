@@ -89,11 +89,15 @@ class Registration(QDialog):
                 user_name = self.userName.text()
                 birth_date = self.birthDate.text()
                 birth_date = datetime.datetime.strptime(birth_date, "%d.%m.%Y").strftime("%Y-%m-%d")
-                database_requests.addUserIn_users(user_name, password, birth_date)
+                user_id = database_requests.addUserIn_users(user_name, password, birth_date)
 
-                login = Login()
-                widget.addWidget(login)
-                widget.setCurrentIndex(widget.currentIndex()+1)
+                table_users = TableUsers(user_name, user_id)
+                widget.addWidget(table_users)
+                widget.setCurrentIndex(widget.currentIndex() + 1)
+
+                # login = Login()
+                # widget.addWidget(login)
+                # widget.setCurrentIndex(widget.currentIndex()+1)
             else:
                 call_error_message_box("Логин пользователя должен состоять только из латинских букв", "ERROR")
         else:
@@ -163,7 +167,6 @@ class TableUsers(QDialog):
 
     def initTable(self):
         contacts = database_requests.getAllUsersByUserId(self.user_id)
-        print(contacts)
         row = 0
         self.tableWidget.setRowCount(len(contacts))
         for contact in contacts:

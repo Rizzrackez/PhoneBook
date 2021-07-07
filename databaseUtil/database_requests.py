@@ -19,6 +19,7 @@ cur = conn.cursor()
 def addUserIn_users(user_name, password, birth_date):
     cur.execute(f'INSERT INTO users (user_name, password, birth_date) values ("{user_name}", "{password}", "{birth_date}")')
     conn.commit()
+    return cur.lastrowid
 
 
 def login(user_name, password):
