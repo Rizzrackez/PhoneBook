@@ -237,6 +237,9 @@ class AddContact(QDialog):
         self.userName.setPlaceholderText(" Имя пользователя")
         self.phone.setPlaceholderText(" Телефон")
 
+        self.setWindowTitle("Телефонная книжка")
+        self.setWindowIcon(QIcon("media/icon.jpg"))
+
     def add_contact(self):
         user_name = self.userName.text()
         phone = self.phone.text()
@@ -267,6 +270,9 @@ class EditContact(QDialog):
     def __init__(self, user_table_instance, user_id, name, phone, birth_date):
         super(EditContact, self).__init__()
         loadUi("forms/edit_contact_window.ui", self)
+
+        self.setWindowTitle("Телефонная книжка")
+        self.setWindowIcon(QIcon("media/icon.jpg"))
 
         self.user_table_instance = user_table_instance
         # self.user_id = self.user_table_instance.user_id

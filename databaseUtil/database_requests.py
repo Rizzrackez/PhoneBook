@@ -29,7 +29,7 @@ def login(user_name, password):
 
 
 def getAllUsers():
-    cur.execute('SELECT * FROM users;')
+    cur.execute('SELECT * FROM users ORDER BY user_name;')
     users = []
     for (id, user_name, password, birth_date) in cur:
         users.append({'id': id, 'user_name': user_name, 'password': password, 'birth_date': birth_date})
@@ -38,7 +38,7 @@ def getAllUsers():
 
 
 def getAllUsersByUserId(user_id):
-    cur.execute(f'SELECT name, phone, birth_date FROM book_users where user_id = {user_id};')
+    cur.execute(f'SELECT name, phone, birth_date FROM book_users where user_id = {user_id} ORDER BY name;')
     users = []
     for (user_name, phone, birth_date) in cur:
         users.append({'user_name': user_name, 'phone': phone, 'birth_date': birth_date})
@@ -52,7 +52,7 @@ def addContactIn_book_users(user_id, user_name, phone, birth_date):
 
 
 def getUsersByBirthDate(user_id):
-    cur.execute(f'SELECT * FROM book_users WHERE WEEK(NOW()) = WEEK( birth_date + INTERVAL (YEAR(NOW()) - YEAR(birth_date)) YEAR ) AND user_id = {user_id};')
+    cur.execute(f'SELECT * FROM book_users WHERE WEEK(NOW()) = WEEK( birth_date + INTERVAL (YEAR(NOW()) - YEAR(birth_date)) YEAR ) AND user_id = {user_id} ORDER BY name;')
     users = []
     for (user_id, user_name, phone, birth_date) in cur:
         users.append({'user_name': user_name, 'phone': phone, 'birth_date': birth_date})
@@ -61,7 +61,7 @@ def getUsersByBirthDate(user_id):
 
 
 def getUserByNamePhoneBirthDate(user_name, phone, birth_date, user_id):
-    cur.execute(f'SELECT * FROM book_users where name = "{user_name}" and phone = "{phone}" and birth_date = "{birth_date}" and user_id = {user_id};')
+    cur.execute(f'SELECT * FROM book_users where name = "{user_name}" and phone = "{phone}" and birth_date = "{birth_date}" and user_id = {user_id} ORDER BY name;;')
     for (user_id, user_name, phone, birth_date) in cur:
         return user_id, user_name, phone, birth_date
 
