@@ -51,7 +51,8 @@ def addContactIn_book_users(user_id, user_name, phone, birth_date):
 
 
 def getUsersByBirthDate(user_id):
-    cur.execute(f'SELECT * FROM book_users WHERE WEEK(NOW()) = WEEK( birth_date + INTERVAL (YEAR(NOW()) - YEAR(birth_date)) YEAR ) AND user_id = {user_id} ORDER BY name;')
+    #cur.execute(f'SELECT * FROM book_users WHERE WEEK(NOW()) = WEEK( birth_date + INTERVAL (YEAR(NOW()) - YEAR(birth_date)) YEAR ) AND user_id = {user_id} ORDER BY name;')\
+    cur.execute(f'SELECT * FROM book_users WHERE DATEDIFF(NOW(),birth_date)%365 BETWEEN 0 AND 7 AND user_id = {user_id} ORDER BY name;')
     users = []
     for (user_id, user_name, phone, birth_date) in cur:
         users.append({'user_name': user_name, 'phone': phone, 'birth_date': birth_date})
