@@ -81,3 +81,4 @@
 2) PyQt5
 3) Qt Designer
 4) СУБД MariaDB
+5) OC - Windows

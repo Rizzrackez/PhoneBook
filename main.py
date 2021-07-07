@@ -74,7 +74,7 @@ class Registration(QDialog):
         #self.birthDate.setPlaceholderText(" Дата рождения")
 
     def registration_function(self):
-        if (self.password.text() == self.password2.text()) and ((self.password.text() or self.password2.text()) != '') and validate_user_name(self.password.text()):
+        if (self.password.text() == self.password2.text()) and ((self.password.text() or self.password2.text()) != ''):
             password = self.password.text()
             if validate_user_name(self.userName.text()):
                 user_name = self.userName.text()
@@ -128,13 +128,6 @@ class TableUsers(QDialog):
         self.addContactButton.clicked.connect(self.create_add_user_window)
 
         self.tableWidget.clicked.connect(self.doubleClickedHandle)
-
-
-    # def initButtons(self):
-    #     for but in (self.pushButton_1, self.pushButton_2, self.pushButton_3, self.pushButton_4, self.pushButton_5,
-    #                 self.pushButton_6, self.pushButton_7, self.pushButton_8, self.pushButton_9, self.pushButton_10,
-    #                 self.pushButton_11, self.pushButton_12, self.pushButton_13):
-    #         but.clicked.connect(lambda: self.filter_users(but.text()))
 
     def doubleClickedHandle(self, index):
         user_name = self.tableWidget.item(index.row(), 0).text()
@@ -327,8 +320,5 @@ if __name__ == '__main__':
     widget.addWidget(main_window)
     widget.setWindowTitle("Телефонная книжка")
     widget.setWindowIcon(QIcon("media/icon.jpg"))
-
     widget.show()
-    #widget.setFixedWidth(380)
-    #widget.setFixedHeight(320)
     app.exec_()
